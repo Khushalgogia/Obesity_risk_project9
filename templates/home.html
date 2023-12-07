@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Obesity Predictor</title>
+    <style>
+        /* Your existing CSS styles here... */
+        body {
+            background-image: url('/static/images/background.png'); /* Replace 'path_to_your_image.jpg' with the actual path to your image */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat;
+            background-color: lightblue; /* Light blue background color for the entire page */
+            font-family: Montserrat, sans-serif; /* Specify the font-family for the entire page */
+            text-align: center;
+             /* Center-align text on the page */
+        }
+
+        h1 {
+            font-size: 46px; /* Increased font size for the title */
+            font-weight: bold; /* Make the title bold */
+            margin-bottom: 20px; /* Add space below the title */
+            color: #debe08; /* Dark text color for the title */
+        }
+
+        /* Additional style for the result display */
+        #result {
+            font-size: 28px; /* Increased font size for the result */
+            margin-top: 20px; /* Add space between form and result */
+            color: #333; /* Dark text color for the result */
+        }
+
+        /* Style for the form */
+        form {
+            width: 60%; /* Increase form width to fit the page */
+            margin: 0 auto; /* Center-align the form on the page */
+        }
+
+        /* Style for the form input fields and button */
+        label {
+            display: block;
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 10px;
+            color: #debe08; /* Add space below labels */
+        }
+
+        .input-group {
+            width: 45%; /* Set width to 45% for input groups (2 input boxes on one line) */
+            display: inline-block; /* Display input groups inline */
+            vertical-align: top; /* Align input groups to the top */
+            margin: 10px; /* Add margin around input groups */
+        }
+
+        .input-group input {
+            width: 100%; /* Set input width to 100% for full-width input boxes */
+            padding: 10px; /* Padding for input boxes */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* Font size for input fields */
+            margin-top: 5px; /* Add space between input boxes and labels */
+        }
+
+        button {
+            background-color: #007BFF; /* Blue background color for the button */
+            color: white; /* White text color for the button text */
+            cursor: pointer;
+            font-size: 18px; /* Font size for the button text */
+            padding: 10px 20px; /* Padding for the button */
+            border: none; /* Remove button border */
+            margin-top: 20px; /* Add space above the button */
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue color on hover */
+        }
+        .input-group select {
+            width: 100%; /* Set the width to 100% for the select element */
+            padding: 10px; /* Padding for the select box */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px; /* Font size for the select box */
+            margin-top: 5px; /* Add space between select box and labels */
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <h1>Obesity Predictor</h1>
+    <form method='POST' action='/predictdata'>
+        <div class="input-group">
+            <label for='Gender'>Gender</label>
+            <select name='Gender' required='required'>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='Age'>Age</label>
+            <input type='number' name='Age' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='Height'>Height</label>
+            <input type='number' name='Height' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='Weight'>weight</label>
+            <input type='number' name='Weight' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='family_history_with_overweight'>Family_History_with_overweight</label>
+            <select name='family_history_with_overweight' required='required'>
+                <option value='yes'>yes</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='FAVC'>Frequent consumption of high caloric food (FAVC)</label>
+            <select name='FAVC' required='required'>
+                <option value='yes'>yes</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='FCVC'>Frequency of consumption of vegetables (FCVC)</label>
+            <input type='number' name='FCVC' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='NCP'>Number of main meals(NCP)</label>
+            <input type='number' name='NCP' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='CAEC'>Consumption of food between meals (CAEC)</label>
+            <select name='CAEC' required='required'>
+                <option value='Sometimes'>Sometimes</option>
+                <option value='Frequently'>Frequently</option>
+                <option value='Always'>Always</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='SMOKE'>SMOKE</label>
+            <select name='SMOKE' required='required'>
+                <option value='yes'>yes</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='CH2O'>Consumption of water daily(CH2O)</label>
+            <input type='number' name='CH2O' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='SCC'>Calories consumption monitoring(SCC)</label>
+            <select name='SCC' required='required'>
+                <option value='yes'>yes</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='FAF'>Physical activity frequency(FAF)</label>
+            <input type='number' name='FAF' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='TUE'>Time using technology devices(TUE)</label>
+            <input type='number' name='TUE' required='required'>
+        </div>
+        <div class="input-group">
+            <label for='CALC'>Consumption of alcohol(CALC)</label>
+            <select name='CALC' required='required'>
+                <option value='Sometimes'>Sometimes</option>
+                <option value='Frequently'>Frequently</option>
+                <option value='Always'>Always</option>
+                <option value='no'>no</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for='MTRANS'>Transportation used</label>
+            <select name='MTRANS' required='required'>
+                <option value='Public_Transportation'>Public_Transportation</option>
+                <option value='Walking'>Walking</option>
+                <option value='Automobile'>Automobile</option>
+                <option value='Motorbike'>Motorbike</option>
+                <option value='Bike'>Bike</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Check the type" required />
+        </div>
+    </form>
+    <h2>
+        You are actually {{results}}
+     </h2>
+</body>
+</html>
