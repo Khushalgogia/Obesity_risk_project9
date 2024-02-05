@@ -26,7 +26,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Enter the data ingestion method")
         try:
-            df = pd.read_csv(r'C:\Users\khush\Python, 12-7\Practice\Github\Obesity_risk_Project8\notebooks\data\ObesityDataSet.csv')
+            df = pd.read_csv(r'notebooks/data/ObesityDataSet.csv')
             logging.info('Read the dataset as df')
 
 

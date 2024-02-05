@@ -6,3 +6,4 @@ ipykernel
 seaborn
 dill
 flask
+-e .
